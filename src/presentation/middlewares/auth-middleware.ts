@@ -5,14 +5,15 @@ import { LoadAccountByToken } from '../../domain/usecases/load-account-by-token'
 
 export class AuthMiddleware implements Middleware {
   constructor (
-    private readonly loadAccountByToken: LoadAccountByToken
+    private readonly loadAccountByToken: LoadAccountByToken,
+    private readonly role: string
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const acccessToken = httpRequest.headers?.['x-acccess-token']
       if (acccessToken) {
-        const account = await this.loadAccountByToken.load(acccessToken)
+        const account = await this.loadAccountByToken.load(acccessToken, this.role)
         if (account) return ok({ accountId: account.id })
       }
 
