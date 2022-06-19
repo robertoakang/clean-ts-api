@@ -119,7 +119,7 @@ describe('Account Mongo Repository', () => {
         name: 'any_name',
         email: 'any_email@mail.com',
         password: 'any_password',
-        accessToken: 'any_token',
+        accessToken: 'any_token'
       })
       const account = await sut.loadByToken('any_token', 'admin')
       expect(account).toBeFalsy()
