@@ -41,6 +41,7 @@
     "husky": "^7.0.0",
     "jest": "^28.0.3",
     "lint-staged": "^12.4.1",
+    "mockdate": "^3.0.5",
     "rimraf": "^3.0.2",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.1",
