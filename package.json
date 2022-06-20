@@ -9,6 +9,7 @@
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
     "start:dev": "tsc -w",
+    "husky": "husky install",
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "up": "npm run build && docker-compose up -d",
     "down": "docker-compose down",
