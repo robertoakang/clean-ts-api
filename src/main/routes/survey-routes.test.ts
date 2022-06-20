@@ -112,5 +112,28 @@ describe('Survey Routes', () => {
         .set('x-access-token', accessToken)
         .expect(200)
     })
+
+    test('Should return 204 when load surveys length is 0', async () => {
+      const fakeAccount = await accountCollection.insertOne({
+        name: 'Roberto',
+        email: 'betoakang@gmail.com',
+        password: '123'
+      })
+
+      const id = fakeAccount.insertedId.toHexString()
+      const accessToken = sign({ id }, env.jwtSecret)
+      await accountCollection.updateOne({
+        _id: new ObjectId(id)
+      }, {
+        $set: {
+          accessToken
+        }
+      })
+
+      await request(app)
+        .get('/api/surveys')
+        .set('x-access-token', accessToken)
+        .expect(204)
+    })
   })
 })
