@@ -1,8 +1,8 @@
 import { ValidationComposite, RequiredFieldValidation } from '@/validation/validators'
-import { Validation } from '@/presentation/protocols/validation'
+import { IValidation } from '@/presentation/protocols/validation'
 
 export const makeAddSurveyValidation = (): ValidationComposite => {
-  const validations: Validation[] = []
+  const validations: IValidation[] = []
   for (const field of ['question', 'answers']) {
     validations.push(new RequiredFieldValidation(field))
   }

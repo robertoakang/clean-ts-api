@@ -1,7 +1,7 @@
-import { Validation } from '@/presentation/protocols/validation'
+import { IValidation } from '@/presentation/protocols/validation'
 
-export class ValidationComposite implements Validation {
-  constructor (private readonly validations: Validation[]) {}
+export class ValidationComposite implements IValidation {
+  constructor (private readonly validations: IValidation[]) {}
 
   validate (input: any): Error {
     for (const validation of this.validations) {
