@@ -1,9 +1,9 @@
-import { Controller, HttpRequest, HttpResponse, LoadSurveys } from './load-surveys-controller-protocols'
+import { IController, HttpRequest, HttpResponse, ILoadSurveys } from './load-surveys-controller-protocols'
 import { noContent, ok, serverError } from '@/presentation/helpers/http/http-helper'
 
-export class LoadSurveysController implements Controller {
+export class LoadSurveysController implements IController {
   constructor (
-    private readonly loadSurveys: LoadSurveys
+    private readonly loadSurveys: ILoadSurveys
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {

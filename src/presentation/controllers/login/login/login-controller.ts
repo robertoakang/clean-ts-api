@@ -1,10 +1,10 @@
-import { Controller, HttpRequest, HttpResponse, Authentication, Validation } from './login-controller-protocols'
+import { IController, HttpRequest, HttpResponse, IAuthentication, IValidation } from './login-controller-protocols'
 import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http/http-helper'
 
-export class LoginController implements Controller {
+export class LoginController implements IController {
   constructor (
-    private readonly authentication: Authentication,
-    private readonly validation: Validation
+    private readonly authentication: IAuthentication,
+    private readonly validation: IValidation
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {

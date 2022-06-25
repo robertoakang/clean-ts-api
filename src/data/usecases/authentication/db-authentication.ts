@@ -1,18 +1,18 @@
 import {
-  Authentication,
+  IAuthentication,
   AuthenticationModel,
-  LoadAccountByEmailRepository,
-  HashComparer,
-  Encrypter,
-  UpdateAccessTokenRepository
+  ILoadAccountByEmailRepository,
+  IHashComparer,
+  IEncrypter,
+  IUpdateAccessTokenRepository
 } from './db-authentication-protocols'
 
-export class DbAuthentication implements Authentication {
+export class DbAuthentication implements IAuthentication {
   constructor (
-    private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository,
-    private readonly hashComparer: HashComparer,
-    private readonly encrypter: Encrypter,
-    private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
+    private readonly loadAccountByEmailRepository: ILoadAccountByEmailRepository,
+    private readonly hashComparer: IHashComparer,
+    private readonly encrypter: IEncrypter,
+    private readonly updateAccessTokenRepository: IUpdateAccessTokenRepository
   ) {}
 
   async auth (authentication: AuthenticationModel): Promise<string> {

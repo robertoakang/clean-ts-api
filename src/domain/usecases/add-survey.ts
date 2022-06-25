@@ -6,6 +6,6 @@ export type AddSurveyModel = {
   date: Date
 }
 
-export interface AddSurvey {
+export interface IAddSurvey {
   add: (data: AddSurveyModel) => Promise<void>
 }

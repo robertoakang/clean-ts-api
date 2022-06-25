@@ -1,12 +1,12 @@
-import { HttpResponse, HttpRequest, Controller, AddAccount, Validation, Authentication } from './signup-controller-protocols'
+import { HttpResponse, HttpRequest, IController, IAddAccount, IValidation, IAuthentication } from './signup-controller-protocols'
 import { badRequest, serverError, ok, forbidden } from '@/presentation/helpers/http/http-helper'
 import { EmailInUseError } from '@/presentation/errors'
 
-export class SignUpController implements Controller {
+export class SignUpController implements IController {
   constructor (
-    private readonly addAccount: AddAccount,
-    private readonly validation: Validation,
-    private readonly authentication: Authentication
+    private readonly addAccount: IAddAccount,
+    private readonly validation: IValidation,
+    private readonly authentication: IAuthentication
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {

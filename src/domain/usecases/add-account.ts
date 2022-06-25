@@ -6,6 +6,6 @@ export type AddAccountModel = {
   password: string
 }
 
-export interface AddAccount {
+export interface IAddAccount {
   add: (account: AddAccountModel) => Promise<AccountModel>
 }

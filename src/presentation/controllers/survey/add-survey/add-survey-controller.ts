@@ -1,10 +1,10 @@
-import { Controller, HttpRequest, HttpResponse, Validation, AddSurvey } from './add-survey-controller-protocols'
+import { IController, HttpRequest, HttpResponse, IValidation, IAddSurvey } from './add-survey-controller-protocols'
 import { badRequest, noContent, serverError } from '@/presentation/helpers/http/http-helper'
 
-export class AddSurveyController implements Controller {
+export class AddSurveyController implements IController {
   constructor (
-    private readonly validation: Validation,
-    private readonly addSurvey: AddSurvey
+    private readonly validation: IValidation,
+    private readonly addSurvey: IAddSurvey
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
