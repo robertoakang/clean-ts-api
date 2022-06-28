@@ -1,6 +1,6 @@
 import { HttpRequest, HttpResponse, IController, ILoadSurveyById } from './save-survey-result-controller-protocols'
+import { forbidden, serverError } from '@/presentation/helpers/http/http-helper'
 import { InvalidParamError } from '@/presentation/errors'
-import { forbidden } from '@/presentation/helpers/http/http-helper'
 
 export class SaveSurveyResultController implements IController {
   constructor (
@@ -8,8 +8,12 @@ export class SaveSurveyResultController implements IController {
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    const survey = await this.loadSurveyById.loadById(httpRequest.params.surveyId)
-    if (!survey) return forbidden(new InvalidParamError('surveyId'))
-    return null
+    try {
+      const survey = await this.loadSurveyById.loadById(httpRequest.params.surveyId)
+      if (!survey) return forbidden(new InvalidParamError('surveyId'))
+      return null
+    } catch (error) {
+      return serverError(error)
+    }
   }
 }
