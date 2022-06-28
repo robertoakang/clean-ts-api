@@ -1,5 +1,5 @@
 import { MongoHelper } from '../helpers/mongo-helper'
-import { ISaveSurveyResultRepository, SaveSurveyResultModel, SurveyResultModel } from '@/data/usecases/save-survey-result/db-save-survey-result-protocols'
+import { ISaveSurveyResultRepository, SaveSurveyResultModel, SurveyResultModel } from '@/data/usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
 import { ObjectId } from 'mongodb'
 
 export class SurveyResultMongoRepository implements ISaveSurveyResultRepository {
