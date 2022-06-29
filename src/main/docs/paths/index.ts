@@ -1,1 +1,2 @@
-export * from './loginPath'
+export * from './login-path'
+export * from './survey-path'
