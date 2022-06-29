@@ -4,7 +4,9 @@ import { Request, RequestHandler, Response } from 'express'
 export const adaptRoute = (controller: IController): RequestHandler => {
   return async (req: Request, res: Response) => {
     const httpRequest: HttpRequest = {
-      body: req.body
+      body: req.body,
+      params: req.params,
+      accountId: req.accountId
     }
     const httpResponse: HttpResponse = await controller.handle(httpRequest)
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {

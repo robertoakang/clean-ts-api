@@ -82,14 +82,14 @@ describe('Survey Routes', () => {
 
     test('Should return 200 on load surveys with valid accessToken', async () => {
       const accessToken = await makeAccessToken()
-      await surveyCollection.insertMany([{
+      await surveyCollection.insertOne({
         question: 'any_question',
         answers: [{
           image: 'any_image',
           answer: 'any_answer'
         }],
         date: new Date()
-      }])
+      })
 
       await request(app)
         .get('/api/surveys')
