@@ -72,16 +72,18 @@ describe('Survey Mongo Repository', () => {
       })
 
       expect(survey).toBeTruthy()
-      expect(surveyResult.id).toBeTruthy()
-      expect(surveyResult.answer).toBe(survey.answers[0].answer)
+      expect(surveyResult.surveyId).toEqual(new ObjectId(survey.id))
+      expect(surveyResult.answers[0].answer).toBe(survey.answers[0].answer)
+      expect(surveyResult.answers[0].count).toBe(1)
+      expect(surveyResult.answers[0].percent).toBe(100)
     })
 
     test('Should update survey result if it exists', async () => {
       const survey = await makeSurvey()
       const account = await makeAccount()
       await surveyResultCollection.insertOne({
-        surveyId: survey.id,
-        accountId: account.id,
+        surveyId: new ObjectId(survey.id),
+        accountId: new ObjectId(account.id),
         answer: survey.answers[0].answer,
         date: new Date()
       })
@@ -94,8 +96,11 @@ describe('Survey Mongo Repository', () => {
         date: new Date()
       })
 
-      expect(survey).toBeTruthy()
-      expect(surveyResult.answer).toBe(survey.answers[1].answer)
+      expect(surveyResult).toBeTruthy()
+      expect(surveyResult.surveyId).toEqual(new ObjectId(survey.id))
+      expect(surveyResult.answers[0].answer).toBe(survey.answers[1].answer)
+      expect(surveyResult.answers[0].count).toBe(1)
+      expect(surveyResult.answers[0].percent).toBe(100)
     })
   })
 })
