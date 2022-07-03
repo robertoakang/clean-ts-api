@@ -1,8 +1,11 @@
 import { MongoHelper, QueryBuilder } from '../helpers'
-import { ISaveSurveyResultRepository, SaveSurveyResultParams, SurveyResultModel } from '@/data/usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
+import { ISaveSurveyResultRepository } from '@/data/protocols/db/survey-result/save-survey-result-repository'
+import { ILoadSurveyResultRepository } from '@/data/protocols/db/survey-result/load-survey-result-repository'
+import { SurveyResultModel } from '@/domain/models/survey-result'
+import { SaveSurveyResultParams } from '@/domain/usecases/survey-result/save-survey-result'
 import { ObjectId } from 'mongodb'
 
-export class SurveyResultMongoRepository implements ISaveSurveyResultRepository {
+export class SurveyResultMongoRepository implements ISaveSurveyResultRepository, ILoadSurveyResultRepository {
   async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
     const surveyResultCollection = await MongoHelper.getCollection('surveyResults')
     await surveyResultCollection.findOneAndUpdate({
@@ -21,7 +24,7 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository 
     return surveyResult
   }
 
-  private async loadBySurveyId (surveyId: string): Promise<SurveyResultModel> {
+  async loadBySurveyId (surveyId: string): Promise<SurveyResultModel> {
     const surveyResultCollection = await MongoHelper.getCollection('surveyResults')
     const query = new QueryBuilder()
       .match({
