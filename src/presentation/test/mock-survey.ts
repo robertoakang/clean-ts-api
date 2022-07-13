@@ -4,31 +4,31 @@ import { SurveyModel } from '@/domain/models/survey'
 import { ILoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
 import { mockSurveyModel, mockSurveyModels } from '@/domain/test'
 
-export const mockAddSurvey = (): IAddSurvey => {
-  class AddSurveyStub implements IAddSurvey {
-    async add (data: AddSurveyParams): Promise<void> {
-      return await Promise.resolve()
-    }
+export class AddSurveySpy implements IAddSurvey {
+  addSurveyParams: AddSurveyParams
+
+  async add (data: AddSurveyParams): Promise<void> {
+    this.addSurveyParams = data
+    return await Promise.resolve()
   }
-  return new AddSurveyStub()
 }
 
-export const mockLoadSurveys = (): ILoadSurveys => {
-  class LoadSurveysStub implements ILoadSurveys {
-    async load (): Promise<SurveyModel[]> {
-      return await Promise.resolve(mockSurveyModels())
-    }
-  }
+export class LoadSurveysSpy implements ILoadSurveys {
+  surveyModels = mockSurveyModels()
+  callsCount = 0
 
-  return new LoadSurveysStub()
+  async load (): Promise<SurveyModel[]> {
+    this.callsCount++
+    return await Promise.resolve(this.surveyModels)
+  }
 }
 
-export const mockLoadSurveyById = (): ILoadSurveyById => {
-  class LoadSurveyByIdStub implements ILoadSurveyById {
-    async loadById (id: string): Promise<SurveyModel> {
-      return await Promise.resolve(mockSurveyModel())
-    }
-  }
+export class LoadSurveyByIdSpy implements ILoadSurveyById {
+  surveyModel = mockSurveyModel()
+  id: string
 
-  return new LoadSurveyByIdStub()
+  async loadById (id: string): Promise<SurveyModel> {
+    this.id = id
+    return await Promise.resolve(this.surveyModel)
+  }
 }
