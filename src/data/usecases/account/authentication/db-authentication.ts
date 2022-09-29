@@ -4,7 +4,8 @@ import {
   ILoadAccountByEmailRepository,
   IHashComparer,
   IEncrypter,
-  IUpdateAccessTokenRepository
+  IUpdateAccessTokenRepository,
+  AuthenticationModel
 } from './db-authentication-protocols'
 
 export class DbAuthentication implements IAuthentication {
@@ -15,14 +16,17 @@ export class DbAuthentication implements IAuthentication {
     private readonly updateAccessTokenRepository: IUpdateAccessTokenRepository
   ) {}
 
-  async auth (authenticationParams: AuthenticationParams): Promise<string> {
+  async auth (authenticationParams: AuthenticationParams): Promise<AuthenticationModel> {
     const account = await this.loadAccountByEmailRepository.loadByEmail(authenticationParams.email)
     if (account) {
       const isValid = await this.hashComparer.compare(authenticationParams.password, account.password)
       if (isValid) {
         const accessToken = await this.encrypter.encrypt(account.id)
         await this.updateAccessTokenRepository.updateAccessToken(account.id, accessToken)
-        return accessToken
+        return {
+          accessToken,
+          name: account.name
+        }
       }
     }
 
