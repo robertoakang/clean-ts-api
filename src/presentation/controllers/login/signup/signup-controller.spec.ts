@@ -82,7 +82,7 @@ describe('SignUp IController', () => {
   test('Should return 200 if an valid data is provided', async () => {
     const { sut, authenticationSpy } = makeSut()
     const httpResponse = await sut.handle(mockRequest())
-    expect(httpResponse).toEqual(ok({ accessToken: authenticationSpy.token }))
+    expect(httpResponse).toEqual(ok(authenticationSpy.authenticationModel))
   })
 
   test('Should call IAuthentication with correct values', async () => {
