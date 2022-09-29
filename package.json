@@ -1,6 +1,6 @@
 {
   "name": "clean-ts-api",
-  "version": "2.4.1",
+  "version": "2.5.1",
   "description": "Node.js Rest API using TDD, Clean Architecture and TypeScript",
   "license": "GPL-3.0-or-later",
   "author": "Roberto Kang",
