@@ -3,7 +3,7 @@
   "version": "2.5.1",
   "description": "Node.js Rest API using TDD, Clean Architecture and TypeScript",
   "license": "GPL-3.0-or-later",
-  "author": "Roberto Kang",
+  "author": "Roberto Arruda Kang",
   "repository": "github:robertoakang/clean-ts-api",
   "homepage": "https://robertoakang.github.io",
   "scripts": {
