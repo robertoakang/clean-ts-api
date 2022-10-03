@@ -3,6 +3,7 @@ import { ILoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-surve
 import { ILoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
 import { SurveyModel } from '@/domain/models/survey'
 import { mockSurveyModel, mockSurveyModels } from '@/../tests/domain/mocks'
+import { ICheckSurveyByIdRepository } from '../protocols'
 
 export class AddSurveyRepositorySpy implements IAddSurveyRepository {
   addSurveyParams: IAddSurveyRepository.Params
@@ -18,6 +19,16 @@ export class LoadSurveyByIdRepositorySpy implements ILoadSurveyByIdRepository {
   id: string
 
   async loadById (id: string): Promise<ILoadSurveyByIdRepository.Result> {
+    this.id = id
+    return this.result
+  }
+}
+
+export class CheckSurveyByIdRepositorySpy implements ICheckSurveyByIdRepository {
+  result = true
+  id: string
+
+  async checkById (id: string): Promise<ICheckSurveyByIdRepository.Result> {
     this.id = id
     return this.result
   }
