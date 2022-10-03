@@ -1,6 +1,6 @@
 import { DbLoadSurveyResult } from '@/data/usecases'
-import { LoadSurveyResultRepositorySpy, LoadSurveyByIdRepositorySpy } from '@/../tests/data/mocks'
-import { throwError } from '@/../tests/domain/mocks'
+import { LoadSurveyResultRepositorySpy, LoadSurveyByIdRepositorySpy } from '@/tests/data/mocks'
+import { throwError } from '@/tests/domain/mocks'
 import { faker } from '@faker-js/faker'
 import MockDate from 'mockdate'
 

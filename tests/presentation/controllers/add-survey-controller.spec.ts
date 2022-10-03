@@ -1,5 +1,5 @@
-import { throwError } from '@/../tests/domain/mocks'
-import { AddSurveySpy, ValidationSpy } from '@/../tests/presentation/mocks'
+import { throwError } from '@/tests/domain/mocks'
+import { AddSurveySpy, ValidationSpy } from '@/tests/presentation/mocks'
 import { AddSurveyController } from '@/presentation/controllers'
 import { badRequest, noContent, serverError } from '@/presentation/helpers'
 

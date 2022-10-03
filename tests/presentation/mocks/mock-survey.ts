@@ -1,4 +1,4 @@
-import { mockSurveyModels } from '@/../tests/domain/mocks'
+import { mockSurveyModels } from '@/tests/domain/mocks'
 import { SurveyModel } from '@/domain/models'
 import { IAddSurvey, ICheckSurveyById, ILoadAnswersBySurvey, ILoadSurveys } from '@/domain/usecases'
 

@@ -1,6 +1,6 @@
 
 import { ISaveSurveyResult, ILoadSurveyResult } from '@/domain/usecases'
-import { mockSurveyResultModel } from '@/../tests/domain/mocks'
+import { mockSurveyResultModel } from '@/tests/domain/mocks'
 
 export class SaveSurveyResultSpy implements ISaveSurveyResult {
   result = mockSurveyResultModel()
