@@ -1,4 +1,4 @@
-import { IController, HttpResponse, HttpRequest } from '@/presentation/protocols'
+import { IController, HttpResponse } from '@/presentation/protocols'
 import { forbidden, serverError, ok } from '@/presentation/helpers'
 import { InvalidParamError } from '@/presentation/errors'
 import { ISaveSurveyResult, ILoadSurveyById } from '@/domain/usecases'
@@ -9,11 +9,9 @@ export class SaveSurveyResultController implements IController {
     private readonly saveSurveyResult: ISaveSurveyResult
   ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle (request: SaveSurveyResultController.Request): Promise<HttpResponse> {
     try {
-      const { surveyId } = httpRequest.params
-      const { answer } = httpRequest.body
-      const accountId = httpRequest.accountId
+      const { surveyId, answer, accountId } = request
 
       const survey = await this.loadSurveyById.loadById(surveyId)
       if (survey) {
@@ -34,5 +32,13 @@ export class SaveSurveyResultController implements IController {
     } catch (error) {
       return serverError(error)
     }
+  }
+}
+
+export namespace SaveSurveyResultController {
+  export type Request = {
+    surveyId: string
+    answer: string
+    accountId: string
   }
 }

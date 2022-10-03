@@ -1,17 +1,15 @@
-import { LoadSurveyResultController } from '@/presentation/controllers'
-import { HttpRequest } from '@/presentation/protocols'
-import { LoadSurveyByIdSpy, LoadSurveyResultSpy } from '@/../tests/presentation/mocks'
-import { forbidden, ok, serverError } from '@/presentation/helpers'
-import { InvalidParamError } from '@/presentation/errors'
 import { throwError } from '@/../tests/domain/mocks'
+import { LoadSurveyByIdSpy, LoadSurveyResultSpy } from '@/../tests/presentation/mocks'
+import { LoadSurveyResultController } from '@/presentation/controllers'
+import { InvalidParamError } from '@/presentation/errors'
+import { forbidden, ok, serverError } from '@/presentation/helpers'
+
 import { faker } from '@faker-js/faker'
 import MockDate from 'mockdate'
 
-const mockRequest = (): HttpRequest => ({
+const mockRequest = (): LoadSurveyResultController.Request => ({
   accountId: faker.datatype.uuid(),
-  params: {
-    surveyId: faker.datatype.uuid()
-  }
+  surveyId: faker.datatype.uuid()
 })
 
 type SutTypes = {
@@ -42,9 +40,9 @@ describe('LoadSurveyResult Controller', () => {
 
   test('Should call ILoadSurveyById with correct value', async () => {
     const { sut, loadSurveyByIdSpy } = makeSut()
-    const httpRequest = mockRequest()
-    await sut.handle(httpRequest)
-    expect(loadSurveyByIdSpy.id).toBe(httpRequest.params.surveyId)
+    const request = mockRequest()
+    await sut.handle(request)
+    expect(loadSurveyByIdSpy.id).toBe(request.surveyId)
   })
 
   test('Should return 403 if ILoadSurveyById returns null', async () => {
@@ -63,10 +61,10 @@ describe('LoadSurveyResult Controller', () => {
 
   test('Should call ILoadSurveyResult with correct values', async () => {
     const { sut, loadSurveyResultSpy } = makeSut()
-    const httpRequest = mockRequest()
-    await sut.handle(httpRequest)
-    expect(loadSurveyResultSpy.surveyId).toBe(httpRequest.params.surveyId)
-    expect(loadSurveyResultSpy.accountId).toBe(httpRequest.accountId)
+    const request = mockRequest()
+    await sut.handle(request)
+    expect(loadSurveyResultSpy.surveyId).toBe(request.surveyId)
+    expect(loadSurveyResultSpy.accountId).toBe(request.accountId)
   })
 
   test('Should return 500 if ILoadSurveyResult throws', async () => {

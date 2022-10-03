@@ -1,4 +1,4 @@
-import { IMiddleware, HttpResponse, HttpRequest } from '@/presentation/protocols'
+import { IMiddleware, HttpResponse } from '@/presentation/protocols'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
 import { AccessDeniedError } from '@/presentation/errors'
 import { ILoadAccountByToken } from '@/domain/usecases'
@@ -9,11 +9,11 @@ export class AuthMiddleware implements IMiddleware {
     private readonly role: string
   ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle (request: AuthMiddleware.Request): Promise<HttpResponse> {
     try {
-      const acccessToken = httpRequest.headers?.['x-access-token']
-      if (acccessToken) {
-        const account = await this.loadAccountByToken.load(acccessToken, this.role)
+      const { accessToken } = request
+      if (accessToken) {
+        const account = await this.loadAccountByToken.load(accessToken, this.role)
         if (account) return ok({ accountId: account.id })
       }
 
@@ -21,5 +21,11 @@ export class AuthMiddleware implements IMiddleware {
     } catch (error) {
       return serverError(error)
     }
+  }
+}
+
+export namespace AuthMiddleware {
+  export type Request = {
+    accessToken?: string
   }
 }

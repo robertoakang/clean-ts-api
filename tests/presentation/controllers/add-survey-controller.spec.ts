@@ -1,20 +1,17 @@
-import { AddSurveyController } from '@/presentation/controllers'
-import { HttpRequest } from '@/presentation/protocols'
-import { badRequest, serverError, noContent } from '@/presentation/helpers'
-import { ValidationSpy, AddSurveySpy } from '@/../tests/presentation/mocks'
 import { throwError } from '@/../tests/domain/mocks'
+import { AddSurveySpy, ValidationSpy } from '@/../tests/presentation/mocks'
+import { AddSurveyController } from '@/presentation/controllers'
+import { badRequest, noContent, serverError } from '@/presentation/helpers'
+
 import { faker } from '@faker-js/faker'
 import MockDate from 'mockdate'
 
-const mockRequest = (): HttpRequest => ({
-  body: {
-    question: faker.random.words(),
-    answers: [{
-      image: faker.image.imageUrl(),
-      answer: faker.random.word()
-    }],
-    date: new Date()
-  }
+const mockRequest = (): AddSurveyController.Request => ({
+  question: faker.random.words(),
+  answers: [{
+    image: faker.image.imageUrl(),
+    answer: faker.random.word()
+  }]
 })
 
 type SutTypes = {
@@ -45,9 +42,9 @@ describe('IAddSurvey IController', () => {
 
   test('Should call IValidation with correct values', async () => {
     const { sut, validationSpy } = makeSut()
-    const httpRequest = mockRequest()
-    await sut.handle(httpRequest)
-    expect(validationSpy.input).toEqual(httpRequest.body)
+    const request = mockRequest()
+    await sut.handle(request)
+    expect(validationSpy.input).toEqual(request)
   })
 
   test('Should return 400 if IValidation fails', async () => {
@@ -59,9 +56,9 @@ describe('IAddSurvey IController', () => {
 
   test('Should call IAddSurvey with correct values', async () => {
     const { sut, addSurveySpy } = makeSut()
-    const httpRequest = mockRequest()
-    await sut.handle(httpRequest)
-    expect(addSurveySpy.addSurveyParams).toEqual(httpRequest.body)
+    const request = mockRequest()
+    await sut.handle(request)
+    expect(addSurveySpy.addSurveyParams).toEqual({ ...request, date: new Date() })
   })
 
   test('Should return 500 if IAddSurvey throws', async () => {
