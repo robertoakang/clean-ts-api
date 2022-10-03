@@ -79,8 +79,31 @@ describe('SurveyMongoRepository', () => {
       const id = fakeSurvey.insertedId.toHexString()
       const sut = makeSut()
       const survey = await sut.loadById(id)
-      expect(survey.id).toBeTruthy()
       expect(survey).toBeTruthy()
+      expect(survey.id).toBeTruthy()
+    })
+
+    test('Should return null if survey does not exists', async () => {
+      const sut = makeSut()
+      const survey = await sut.loadById(new FakeObjectId().toHexString())
+      expect(survey).toBeFalsy()
+    })
+  })
+
+  describe('loadAnswers()', () => {
+    test('Should load answers on success', async () => {
+      const fakeSurvey = await surveyCollection.insertOne(mockAddSurveyParams())
+      const survey = await surveyCollection.findOne({ _id: fakeSurvey.insertedId })
+      const id = fakeSurvey.insertedId.toHexString()
+      const sut = makeSut()
+      const answers = await sut.loadAnswers(id)
+      expect(answers).toEqual([survey.answers[0].answer, survey.answers[1].answer])
+    })
+
+    test('Should return empty array if survey does not exists', async () => {
+      const sut = makeSut()
+      const answers = await sut.loadAnswers(new FakeObjectId().toHexString())
+      expect(answers).toEqual([])
     })
   })
 
@@ -93,7 +116,7 @@ describe('SurveyMongoRepository', () => {
       expect(exists).toBeTruthy()
     })
 
-    test('Should return false if survey not exists', async () => {
+    test('Should return false if survey does not exists', async () => {
       const sut = makeSut()
       const exists = await sut.checkById(new FakeObjectId().toHexString())
       expect(exists).toBeFalsy()
