@@ -69,7 +69,8 @@ describe('DbLoadSurveyResult UseCase', () => {
       surveyId: result.id,
       question: result.question,
       date: result.date,
-      answers: result.answers.map(answer => Object.assign({}, answer, {
+      answers: result.answers.map(answer => ({
+        ...answer,
         count: 0,
         percent: 0,
         isCurrentAccountAnswer: false
