@@ -4,6 +4,7 @@ import { ILoadAccountByTokenRepository } from '@/data/protocols/db/account/load-
 import { IUpdateAccessTokenRepository } from '@/data/protocols/db/account/update-access-token-repository'
 
 import { faker } from '@faker-js/faker'
+import { ICheckAccountByEmailRepository } from '../protocols'
 
 export class AddAccountRepositorySpy implements IAddAccountRepository {
   result = true
@@ -16,14 +17,24 @@ export class AddAccountRepositorySpy implements IAddAccountRepository {
 }
 
 export class LoadAccountByEmailRepositorySpy implements ILoadAccountByEmailRepository {
+  email: string
   result = {
     id: faker.datatype.uuid(),
     name: faker.name.findName(),
     password: faker.internet.password()
   }
-  email: string
 
   async loadByEmail (email: string): Promise<ILoadAccountByEmailRepository.Result> {
+    this.email = email
+    return this.result
+  }
+}
+
+export class CheckAccountByEmailRepositorySpy implements ICheckAccountByEmailRepository {
+  email: string
+  result = false
+
+  async checkByEmail (email: string): Promise<ICheckAccountByEmailRepository.Result> {
     this.email = email
     return this.result
   }
