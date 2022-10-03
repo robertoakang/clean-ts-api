@@ -72,7 +72,7 @@ describe('SignUp IController', () => {
 
   test('Should return 403 if IAddAccount returns null', async () => {
     const { sut, addAccountSpy } = makeSut()
-    addAccountSpy.isValid = null
+    addAccountSpy.result = null
     const httpResponse = await sut.handle(mockRequest())
     expect(httpResponse).toEqual(forbidden(new EmailInUseError()))
   })
