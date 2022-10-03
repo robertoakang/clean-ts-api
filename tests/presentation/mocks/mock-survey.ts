@@ -1,7 +1,5 @@
-import { AddSurveyParams, IAddSurvey } from '@/domain/usecases/survey/add-survey'
-import { ILoadSurveys } from '@/domain/usecases/survey/load-surveys'
+import { AddSurveyParams, IAddSurvey, ILoadSurveys, ILoadSurveyById } from '@/domain/usecases'
 import { SurveyModel } from '@/domain/models'
-import { ILoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
 import { mockSurveyModel, mockSurveyModels } from '@/../tests/domain/mocks'
 
 export class AddSurveySpy implements IAddSurvey {

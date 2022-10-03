@@ -1,6 +1,4 @@
-import { AddAccountParams, IAddAccount } from '@/domain/usecases/account/add-account'
-import { IAuthentication, AuthenticationParams } from '@/domain/usecases/account/authentication'
-import { ILoadAccountByToken } from '@/domain/usecases/account/load-account-by-token'
+import { AddAccountParams, IAddAccount, IAuthentication, AuthenticationParams, ILoadAccountByToken } from '@/domain/usecases'
 import { AccountModel, AuthenticationModel } from '@/domain/models'
 import { mockAccountModel } from '@/../tests/domain/mocks'
 import { faker } from '@faker-js/faker'

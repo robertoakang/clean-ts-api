@@ -1,5 +1,5 @@
 import { MongoHelper } from '@/infra/db'
-import { AddAccountParams } from '@/domain/usecases/account/add-account'
+import { AddAccountParams } from '@/domain/usecases'
 import { AccountModel } from '@/domain/models'
 import { IAddAccountRepository, ILoadAccountByEmailRepository, IUpdateAccessTokenRepository, ILoadAccountByTokenRepository } from '@/data/protocols'
 import { ObjectId } from 'mongodb'

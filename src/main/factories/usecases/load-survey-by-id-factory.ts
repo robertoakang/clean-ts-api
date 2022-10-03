@@ -1,4 +1,4 @@
-import { ILoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
+import { ILoadSurveyById } from '@/domain/usecases'
 import { DbLoadSurveyById } from '@/data/usecases'
 import { SurveyMongoRepository } from '@/infra/db'
 

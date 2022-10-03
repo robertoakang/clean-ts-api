@@ -1,6 +1,6 @@
 import { ISaveSurveyResultRepository } from '@/data/protocols/db/survey-result/save-survey-result-repository'
 import { ILoadSurveyResultRepository } from '@/data/protocols/db/survey-result/load-survey-result-repository'
-import { SaveSurveyResultParams } from '@/domain/usecases/survey-result/save-survey-result'
+import { SaveSurveyResultParams } from '@/domain/usecases'
 import { SurveyResultModel } from '@/domain/models/survey-result'
 import { mockSurveyResultModel } from '@/../tests/domain/mocks'
 

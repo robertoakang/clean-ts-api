@@ -1,6 +1,5 @@
 import { AccountModel } from '@/domain/models'
-import { AddAccountParams } from '@/domain/usecases/account/add-account'
-import { AuthenticationParams } from '@/domain/usecases/account/authentication'
+import { AddAccountParams, AuthenticationParams } from '@/domain/usecases'
 import { faker } from '@faker-js/faker'
 
 export const mockAddAccountParams = (): AddAccountParams => ({

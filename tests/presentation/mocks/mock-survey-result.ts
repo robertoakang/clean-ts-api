@@ -1,6 +1,5 @@
 
-import { SaveSurveyResultParams, ISaveSurveyResult } from '@/domain/usecases/survey-result/save-survey-result'
-import { ILoadSurveyResult } from '@/domain/usecases/survey-result/load-survey-result'
+import { SaveSurveyResultParams, ISaveSurveyResult, ILoadSurveyResult } from '@/domain/usecases'
 import { SurveyResultModel } from '@/domain/models'
 import { mockSurveyResultModel } from '@/../tests/domain/mocks'
 
