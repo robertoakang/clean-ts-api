@@ -11,7 +11,7 @@ services:
       - "27017:27017"
   api:
     container_name: api-container
-    image: node:16
+    image: node:14
     working_dir: /usr/src/clean-ts-api
     restart: always
     command: bash -c "npm install --omit=dev && npm run debug"
