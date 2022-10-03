@@ -1,15 +1,15 @@
-import { AddAccountParams, IAddAccount, IAuthentication, AuthenticationParams, ILoadAccountByToken } from '@/domain/usecases'
+import { IAddAccount, IAuthentication, AuthenticationParams, ILoadAccountByToken } from '@/domain/usecases'
 import { AccountModel, AuthenticationModel } from '@/domain/models'
 import { mockAccountModel } from '@/../tests/domain/mocks'
 import { faker } from '@faker-js/faker'
 
 export class AddAccountSpy implements IAddAccount {
-  accountModel = mockAccountModel()
-  addAccountParams: AddAccountParams
+  isValid = true
+  addAccountParams: IAddAccount.Params
 
-  async add (account: AddAccountParams): Promise<AccountModel> {
+  async add (account: IAddAccount.Params): Promise<IAddAccount.Result> {
     this.addAccountParams = account
-    return await Promise.resolve(this.accountModel)
+    return this.isValid
   }
 }
 
