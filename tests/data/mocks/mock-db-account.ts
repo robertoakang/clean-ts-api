@@ -20,7 +20,7 @@ export class LoadAccountByEmailRepositorySpy implements ILoadAccountByEmailRepos
   email: string
   result = {
     id: faker.datatype.uuid(),
-    name: faker.name.findName(),
+    name: faker.name.fullName(),
     password: faker.internet.password()
   }
 

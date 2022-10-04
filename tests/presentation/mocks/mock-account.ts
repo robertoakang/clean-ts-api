@@ -15,7 +15,7 @@ export class AuthenticationSpy implements IAuthentication {
   authenticationParams: IAuthentication.Params
   authenticationModel = {
     accessToken: faker.datatype.uuid(),
-    name: faker.name.findName()
+    name: faker.name.fullName()
   }
 
   async auth (authenticationParams: IAuthentication.Params): Promise<IAuthentication.Result> {
