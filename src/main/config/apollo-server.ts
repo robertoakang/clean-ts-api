@@ -29,8 +29,8 @@ export default async (app: Express): Promise<void> => {
     resolvers,
     typeDefs,
     plugins: [{
-      requestDidStart: (): any => ({
-        willSendResponse: ({ response, errors }) => handleErrors(response, errors)
+      requestDidStart: async () => ({
+        willSendResponse: async ({ response, errors }) => handleErrors(response, errors)
       })
     }]
   })
