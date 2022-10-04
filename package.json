@@ -11,6 +11,7 @@
     "start:dev": "tsc -w",
     "start:local": "npm run build && npm start",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
     "postbuild": "copyfiles -u 1 public/**/* dist/static",
     "husky": "husky install",
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
