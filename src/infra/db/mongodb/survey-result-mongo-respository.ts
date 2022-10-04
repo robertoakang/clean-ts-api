@@ -178,9 +178,7 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository,
         _id: {
           surveyId: '$surveyId',
           question: '$question',
-          date: '$date',
-          answer: '$answers.answer',
-          image: '$answers.image'
+          date: '$date'
         },
         answers: {
           $push: '$answer'
@@ -188,7 +186,9 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository,
       })
       .project({
         _id: 0,
-        surveyId: '$_id.surveyId',
+        surveyId: {
+          $toString: '$_id.surveyId'
+        },
         question: '$_id.question',
         date: '$_id.date',
         answers: '$answers'
