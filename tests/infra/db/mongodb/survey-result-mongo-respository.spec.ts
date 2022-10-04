@@ -109,7 +109,7 @@ describe('SurveyResultMongoRepository', () => {
       const surveyResult = await sut.loadBySurveyId(survey.id, firstAccountId)
 
       expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(new ObjectId(survey.id))
+      expect(surveyResult.surveyId).toEqual(survey.id)
       expect(surveyResult.answers[0].count).toBe(2)
       expect(surveyResult.answers[0].percent).toBe(100)
       expect(surveyResult.answers[0].isCurrentAccountAnswer).toBeTruthy()
@@ -145,7 +145,7 @@ describe('SurveyResultMongoRepository', () => {
       const surveyResult = await sut.loadBySurveyId(survey.id, secondAccountId)
 
       expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(new ObjectId(survey.id))
+      expect(surveyResult.surveyId).toEqual(survey.id)
       expect(surveyResult.answers[0].count).toBe(2)
       expect(surveyResult.answers[0].percent).toBe(67)
       expect(surveyResult.answers[0].isCurrentAccountAnswer).toBeTruthy()
@@ -176,7 +176,7 @@ describe('SurveyResultMongoRepository', () => {
       const surveyResult = await sut.loadBySurveyId(survey.id, thirdAccountId)
 
       expect(surveyResult).toBeTruthy()
-      expect(surveyResult.surveyId).toEqual(new ObjectId(survey.id))
+      expect(surveyResult.surveyId).toEqual(survey.id)
       expect(surveyResult.answers[0].count).toBe(1)
       expect(surveyResult.answers[0].percent).toBe(50)
       expect(surveyResult.answers[0].isCurrentAccountAnswer).toBeFalsy()
