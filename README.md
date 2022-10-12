@@ -3,7 +3,6 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/robertoakang/clean-ts-api/badge.svg)](https://snyk.io/test/github/robertoakang/clean-ts-api)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
 
 # **CLEAN NODE API WITH TYPESCRIPT**
 
@@ -18,7 +17,7 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 
 <!-- ## [**Link para a documentação da API**](http://git-robertoakang.herokuapp.com/api-docs) -->
 
-> ## APIs em construção neste treinamento
+> ## APIs construídas neste treinamento
 
 1. [Cadastro](./requirements/signup.md)
 2. [Login](./requirements/login.md)
